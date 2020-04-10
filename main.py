@@ -53,6 +53,8 @@ monster_to_hunt_index = 0
 monster_list_item_height = 30
 # jump spawns, useful when you cant kill someone that is in your spawn
 jump_spawns = True
+# how much time does it wait, before looping again (seconds)
+screenshot_delay = 2
 
 winapi = WinApi(window_title, scaled_resolution)
 handle = winapi.get_handle()
@@ -88,6 +90,6 @@ if handle:
                     if monster_to_hunt_index >= 9:
                         monster_to_hunt_index = 0
                 winapi.mouse_click(monster_position)
-        time.sleep(4)
+        time.sleep(screenshot_delay)
 else:
     print('handle not found, check the window title or open your emulator.')

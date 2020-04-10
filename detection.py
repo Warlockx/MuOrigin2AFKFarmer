@@ -40,7 +40,7 @@ class Detection:
         return self.monitor.get_cords(self.resources['chat_collapse'])
 
     def check_dead(self):
-        return self.monitor.get_cords(self.resources['death_counter'])
+        return self.monitor.get_cords(self.resources['death_counter'], threshold=.8)
 
     def check_close_button(self):
         return self.monitor.get_cords(self.resources['yellow_close_button']) \
