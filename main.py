@@ -51,6 +51,8 @@ scaled_resolution = [502, 892]
 monster_to_hunt_index = 0
 # might need tweaking, depending on the resolution
 monster_list_item_height = 30
+# jump spawns, useful when you cant kill someone that is in your spawn
+jump_spawns = True
 
 winapi = WinApi(window_title, scaled_resolution)
 handle = winapi.get_handle()
@@ -79,7 +81,13 @@ if handle:
             if monster_icon:
                 monster_position = monster_icon[0][0], monster_icon[0][1] + \
                                    (monster_to_hunt_index + 1) * monster_list_item_height
+                # this will change the spawn you will try to go, maybe the next one is safer
+                if jump_spawns:
+                    monster_to_hunt_index += 1
+                    # the list only shows 9 monsters, most maps have less than that, but we could scroll later
+                    if monster_to_hunt_index >= 9:
+                        monster_to_hunt_index = 0
                 winapi.mouse_click(monster_position)
-        time.sleep(.5)
+        time.sleep(4)
 else:
     print('handle not found, check the window title or open your emulator.')
